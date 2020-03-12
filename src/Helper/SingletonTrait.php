@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Trait SingletonTrait
+ *
+ * @category  Evaneos
+ * @package   Evaneos\Helper
+ * @author    Marvin Courcier <courciermarvin@gmail.com>
+ * @copyright 2020
+ */
 trait SingletonTrait
 {
     /**
@@ -8,6 +16,8 @@ trait SingletonTrait
     protected static $instance = null;
 
     /**
+     * Get Class Instance
+     *
      * @return $this
      */
     public static function getInstance()
