@@ -1,14 +1,26 @@
 <?php
 
+/**
+ * Class SiteRepository
+ *
+ * @category  Evaneos
+ * @package   Evaneos\Repository
+ * @author    Marvin Courcier <courciermarvin@gmail.com>
+ * @copyright 2020
+ */
 class SiteRepository implements Repository
 {
     use SingletonTrait;
 
+    /**
+     * Url
+     *
+     * @var string
+     */
     private $url;
 
     /**
      * SiteRepository constructor.
-     *
      */
     public function __construct()
     {
