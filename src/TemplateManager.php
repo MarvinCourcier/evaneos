@@ -10,13 +10,13 @@
  */
 class TemplateManager
 {
-    public function getTemplateComputed(Template $tpl, array $data)
+    public function getTemplateComputed(Template $template, array $data)
     {
-        if (!$tpl) {
-            throw new \RuntimeException('no tpl given');
+        if (!$template) {
+            throw new \RuntimeException('No template given');
         }
 
-        $replaced          = clone($tpl);
+        $replaced = clone($template);
         $replaced->setSubject($this->computeText($replaced->getSubject(), $data));
         $replaced->setContent($this->computeText($replaced->getContent(), $data));
 
@@ -25,12 +25,9 @@ class TemplateManager
 
     private function computeText($text, array $data)
     {
-        $APPLICATION_CONTEXT = ApplicationContext::getInstance();
-
         $quote = (isset($data['quote']) && $data['quote'] instanceof Quote) ? $data['quote'] : null;
 
-        if ($quote)
-        {
+        if ($quote) {
             $quoteFromRepository = QuoteRepository::getInstance()->getById($quote->getId());
             $usefulObject        = SiteRepository::getInstance()->getById($quote->getSiteId());
             $destinationOfQuote  = DestinationRepository::getInstance()->getById($quote->getDestinationId());
@@ -74,7 +71,7 @@ class TemplateManager
          * USER
          * [user:*]
          */
-        $user = (isset($data['user']) && ($data['user']  instanceof User)) ? $data['user'] : $APPLICATION_CONTEXT->getCurrentUser();
+        $user = (isset($data['user']) && ($data['user']  instanceof User)) ? $data['user'] : ApplicationContext::getInstance()->getCurrentUser();
 
         if ($user) {
             (strpos($text, '[user:first_name]') !== false) && $text = str_replace('[user:first_name]' , ucfirst(mb_strtolower($user->getFirstname())), $text);
