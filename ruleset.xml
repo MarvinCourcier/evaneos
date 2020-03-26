@@ -4,5 +4,16 @@
     <rule ref="PSR1"/>
     <rule ref="PSR2"/>
     <rule ref="PSR12"/>
+    
+    <!--
+    Warn about lines longer than 100 chars,
+    and error for lines longer than 135 chars.
+    -->
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="160" />
+            <property name="absoluteLineLimit" value="170" />
+        </properties>
+    </rule>
 
 </ruleset>

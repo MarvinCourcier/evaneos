@@ -15,6 +15,9 @@ require_once __DIR__ . '/../src/Repository/QuoteRepository.php';
 require_once __DIR__ . '/../src/Repository/SiteRepository.php';
 require_once __DIR__ . '/../src/TemplateManager.php';
 
+use Evaneos\Entity\Template;
+use Evaneos\Entity\Quote;
+
 $faker = \Faker\Factory::create();
 
 $template = new Template(
@@ -30,7 +33,7 @@ Bien cordialement,
 L'équipe Evaneos.com
 www.evaneos.com
 ");
-$templateManager = new TemplateManager();
+$templateManager = new Evaneos\TemplateManager();
 
 $message = $templateManager->getTemplateComputed(
     $template,

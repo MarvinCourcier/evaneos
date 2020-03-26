@@ -1,5 +1,10 @@
 <?php
 
+namespace Evaneos\Repository;
+
+use Evaneos\Helper\SingletonTrait;
+use Evaneos\Entity\Site;
+
 /**
  * Class SiteRepository
  *
@@ -25,7 +30,7 @@ class SiteRepository implements Repository
     private function __construct()
     {
         // DO NOT MODIFY THIS METHOD
-        $this->url = Faker\Factory::create()->url;
+        $this->url = \Faker\Factory::create()->url;
     }
 
     /**

@@ -1,5 +1,10 @@
 <?php
 
+namespace Evaneos\Repository;
+
+use Evaneos\Helper\SingletonTrait;
+use Evaneos\Entity\Quote;
+
 /**
  * Class QuoteRepository
  *
@@ -39,16 +44,16 @@ class QuoteRepository implements Repository
     private function __construct()
     {
         // DO NOT MODIFY THIS METHOD
-        $generator = Faker\Factory::create();
+        $generator = \Faker\Factory::create();
 
         $this->siteId        = $generator->numberBetween(1, 10);
         $this->destinationId = $generator->numberBetween(1, 200);
-        $this->date          = new DateTime();
+        $this->date          = new \DateTime();
     }
 
     /**
      * Get by Id
-     * 
+     *
      * @param int $id
      *
      * @return Quote

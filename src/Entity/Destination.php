@@ -1,5 +1,7 @@
 <?php
 
+namespace Evaneos\Entity;
+
 /**
  * Class Destination
  *
@@ -99,7 +101,7 @@ class Destination
      * Set CountryName
      *
      * @param string $countryName
-     * 
+     *
      * @return self
      */
     public function setCountryName(string $countryName): self

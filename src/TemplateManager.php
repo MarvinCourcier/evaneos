@@ -1,5 +1,15 @@
 <?php
 
+namespace Evaneos;
+
+use Evaneos\Repository\DestinationRepository;
+use Evaneos\Repository\QuoteRepository;
+use Evaneos\Context\ApplicationContext;
+use Evaneos\Repository\SiteRepository;
+use Evaneos\Entity\Template;
+use Evaneos\Entity\Quote;
+use Evaneos\Entity\User;
+
 /**
  * Class TemplateManager
  *
@@ -48,7 +58,8 @@ class TemplateManager
         $user = (isset($data['user']) && ($data['user'] instanceof User)) ? $data['user'] : ApplicationContext::getInstance()->getCurrentUser();
 
         if ($user) {
-            (strpos($text, '[user:first_name]') !== false) && $text = str_replace('[user:first_name]' , ucfirst(mb_strtolower($user->getFirstname())), $text);
+            (strpos($text, '[user:first_name]') !== false)
+            && $text = str_replace('[user:first_name]', ucfirst(mb_strtolower($user->getFirstname())), $text);
         }
 
         return $text;
@@ -70,7 +81,8 @@ class TemplateManager
             $destination = DestinationRepository::getInstance()->getById($quote->getDestinationId());
             $website     = SiteRepository::getInstance()->getById($quote->getSiteId());
 
-            $text = str_replace('[quote:destination_link]', $website->getUrl() . '/' . $destination->getCountryName() . '/quote/' . $quoteFromRepository->id, $text);
+            $text = str_replace('[quote:destination_link]', $website->getUrl() . '/'
+            . $destination->getCountryName() . '/quote/' . $quoteFromRepository->id, $text);
         } else {
             $text = str_replace('[quote:destination_link]', '', $text);
         }
@@ -91,7 +103,7 @@ class TemplateManager
         }
 
         if (strpos($text, '[quote:destination_name]') !== false) {
-            $destinationOfQuote  = DestinationRepository::getInstance()->getById($quote->getDestinationId());
+            $destinationOfQuote = DestinationRepository::getInstance()->getById($quote->getDestinationId());
 
             $text = str_replace('[quote:destination_name]', $destinationOfQuote->getCountryName(), $text);
         }
