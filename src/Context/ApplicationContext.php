@@ -25,9 +25,9 @@ class ApplicationContext
     /**
      * ApplicationContext Constructor.
      */
-    public function __construct()
+    private function __construct()
     {
-        $faker = \Faker\Factory::create();
+        $faker             = \Faker\Factory::create();
         $this->currentSite = new Site($faker->randomNumber(), $faker->url);
         $this->currentUser = new User($faker->randomNumber(), $faker->firstName, $faker->lastName, $faker->email);
     }
