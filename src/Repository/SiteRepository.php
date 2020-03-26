@@ -38,4 +38,14 @@ class SiteRepository implements Repository
         // DO NOT MODIFY THIS METHOD
         return new Site($id, $this->url);
     }
+
+    /**
+     * Get Site Url
+     *
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
 }

@@ -29,41 +29,35 @@ class TemplateManager
 
         if ($quote) {
             $quoteFromRepository = QuoteRepository::getInstance()->getById($quote->getId());
-            $usefulObject        = SiteRepository::getInstance()->getById($quote->getSiteId());
-            $destinationOfQuote  = DestinationRepository::getInstance()->getById($quote->getDestinationId());
 
             if (strpos($text, '[quote:destination_link]') !== false) {
                 $destination = DestinationRepository::getInstance()->getById($quote->getDestinationId());
+                $website     = SiteRepository::getInstance()->getById($quote->getSiteId());
+
+                $text = str_replace('[quote:destination_link]', $website->getUrl() . '/' . $destination->getCountryName() . '/quote/' . $quoteFromRepository->id, $text);
+            } else {
+                $text = str_replace('[quote:destination_link]', '', $text);
             }
-
-            $containsSummaryHtml = strpos($text, '[quote:summary_html]');
-            $containsSummary     = strpos($text, '[quote:summary]');
-
-            if ($containsSummaryHtml !== false || $containsSummary !== false) {
-                if ($containsSummaryHtml !== false) {
-                    $text = str_replace(
-                        '[quote:summary_html]',
-                        Quote::renderHtml($quoteFromRepository),
-                        $text
-                    );
-                }
-                if ($containsSummary !== false) {
-                    $text = str_replace(
-                        '[quote:summary]',
-                        Quote::renderText($quoteFromRepository),
-                        $text
-                    );
-                }
+            
+            if (strpos($text, '[quote:summary_html]') !== false) {
+                $text = str_replace(
+                    '[quote:summary_html]',
+                    Quote::renderHtml($quoteFromRepository),
+                    $text
+                );
+            }
+            if (strpos($text, '[quote:summary]') !== false) {
+                $text = str_replace(
+                    '[quote:summary]',
+                    Quote::renderText($quoteFromRepository),
+                    $text
+                );
             }
 
             if (strpos($text, '[quote:destination_name]') !== false) {
-                $text = str_replace('[quote:destination_name]', $destinationOfQuote->getCountryName(), $text);
-            }
+                $destinationOfQuote  = DestinationRepository::getInstance()->getById($quote->getDestinationId());
 
-            if (isset($destination)) {
-                $text = str_replace('[quote:destination_link]', $usefulObject->url . '/' . $destination->getCountryName() . '/quote/' . $quoteFromRepository->id, $text);
-            } else {
-                $text = str_replace('[quote:destination_link]', '', $text);
+                $text = str_replace('[quote:destination_name]', $destinationOfQuote->getCountryName(), $text);
             }
         }
 
