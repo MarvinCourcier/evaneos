@@ -47,6 +47,8 @@ class QuoteRepository implements Repository
     }
 
     /**
+     * Get by Id
+     * 
      * @param int $id
      *
      * @return Quote
