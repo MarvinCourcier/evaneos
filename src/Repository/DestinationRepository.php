@@ -13,7 +13,7 @@ use Evaneos\Entity\Destination;
  * @author    Marvin Courcier <courciermarvin@gmail.com>
  * @copyright 2020
  */
-class DestinationRepository implements Repository
+final class DestinationRepository implements Repository
 {
     use SingletonTrait;
 

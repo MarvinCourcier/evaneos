@@ -13,7 +13,7 @@ use Evaneos\Entity\Quote;
  * @author    Marvin Courcier <courciermarvin@gmail.com>
  * @copyright 2020
  */
-class QuoteRepository implements Repository
+final class QuoteRepository implements Repository
 {
     use SingletonTrait;
 

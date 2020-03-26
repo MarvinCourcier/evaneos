@@ -14,7 +14,7 @@ use Evaneos\Entity\User;
  * @author    Marvin Courcier <courciermarvin@gmail.com>
  * @copyright 2020
  */
-class ApplicationContext
+final class ApplicationContext
 {
     use SingletonTrait;
 
@@ -81,7 +81,7 @@ class ApplicationContext
      */
     public function setCurrentUser(User $currentUser)
     {
-        $this->getCurrentUser = $currentUser;
+        $this->currentUser = $currentUser;
 
         return $this;
     }

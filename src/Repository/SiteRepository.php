@@ -13,7 +13,7 @@ use Evaneos\Entity\Site;
  * @author    Marvin Courcier <courciermarvin@gmail.com>
  * @copyright 2020
  */
-class SiteRepository implements Repository
+final class SiteRepository implements Repository
 {
     use SingletonTrait;
 
